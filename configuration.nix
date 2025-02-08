@@ -41,24 +41,6 @@
         };
     };
 
-    systemd = {
-        services = {
-            amnezia-vpn = {
-                description = "Amnezia VPN AutoStart";
-                after = [ "network.target" ];
-                wantedBy = [ "multi-user.target" ];
-                serviceConfig = {
-                    Type = "simple";
-                    ExecStart = ''${pkgs.writeShellScript "start-amnezia" ''
-                    PATH=$(find /nix/store -type d -name 'amnezia-vpn-*' | head -n 1)/bin
-                    exec "$PATH/AmneziaVPN-service"
-                    ''}'';
-                    Restart = "always";
-                };
-            };
-        };
-    };
-
     nixpkgs = {
         config = {
             allowUnfree = true;
@@ -217,8 +199,8 @@
         cbonsai
         cmatrix
         fd
+        htop
         zsh
-        starship
     ];
     system.stateVersion = "24.11";
 }
