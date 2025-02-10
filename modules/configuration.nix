@@ -16,6 +16,8 @@
   };
 
   programs = {
+    zsh.enable = true;
+
     steam = {
       enable = true;
       extraPackages = with pkgs; [ libpulseaudio ];
