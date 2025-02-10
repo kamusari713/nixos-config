@@ -1,0 +1,59 @@
+{
+    "layer": "bottom",
+    "position": "top",
+    "height": 40,
+    "spacing": 2,
+    "exclusive": true,
+    "gtk-layer-shell": true,
+    "passthrough": false,
+    "fixed-center": true,
+
+    "modules-left": ["hyprland/workspaces"],
+    "modules-center": ["hyprland/window"],
+    "modules-right": [
+        "hyprland/language",
+        "clock",
+        "clock#simpleclock",
+        "tray"
+    ],
+
+    "hyprland/workspaces": {
+        "on-click": "activate",
+        "format": "{id}",
+        "all-outputs": true,
+        "disable-scroll": false,
+        "active-only": false
+    },
+    "hyprland/window": {
+        "format": "{title}"
+    },
+    "hyprland/language": {
+      "format": " {}",
+      "format-en": "en",
+      "format-ru": "ru"
+    },
+    "tray": {
+        "show-passive-items": true,
+        "spacing": 10
+    },
+    "clock#simpleclock": {
+        "tooltip": false,
+        "format": " {:%H:%M}"
+    },
+    "clock": {
+        "format": " {:L%a %d %b}",
+        "calendar": {
+            "format": {
+                "days": "<span weight='normal'>{}</span>",
+                "months": "<span color='#cdd6f4'><b>{}</b></span>",
+                "today": "<span color='#f38ba8' weight='700'><u>{}</u></span>",
+                "weekdays": "<span color='#f9e2af'><b>{}</b></span>",
+                "weeks": "<span color='#a6e3a1'><b>W{}</b></span>"
+            },
+            "mode": "month",
+            "mode-mon-col": 1,
+            "on-scroll": 1
+        },
+        "tooltip-format": "<span color='#cdd6f4' font='Lexend 16'><tt><small>{calendar}</small></tt></span>"
+    }
+}
