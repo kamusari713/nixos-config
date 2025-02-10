@@ -1,4 +1,8 @@
-{ pkgs, ... }: {
+{ pkgs, config, lib, ... }:
+let
+  flakeDir = "~/nix-config";
+in
+{
 
   home = {
     username = "kamusari";
@@ -6,38 +10,82 @@
     stateVersion = "24.11";
   };
 
+  gtk = {
+    enable = true;
+    iconTheme = {
+      name = "Gruvbox-dark";
+      package = pkgs.gruvbox-dark-icons-gtk;
+    };
+    theme = {
+      name = "Gruvbox-dark";
+      package = pkgs.gruvbox-dark-gtk;
+    };
+  };
+
   programs = {
+    steam = {
+      enable = true;
+      extraPackages = with pkgs; [ libpulseaudio ];
+      gamescopeSession.enable = true;
+      remotePlay.openFirewall = true;
+      dedicatedServer.openFirewall = true;
+      localNetworkGameTransfers.openFirewall = true;
+    };
+
+    hyprland = {
+      enable = true;
+      xwayland.enable = true;
+    };
+
+    bash = {
+      enable = true;
+    };
+
+    java = {
+      enable = true;
+      package = pkgs.jdk21;
+    };
+
+    git = {
+      enable = true;
+      userName = "kamusari713";
+      userEmail = "kamusari713@yandex.com";
+    };
+
     home-manager = {
       enable = true;
     };
 
     zsh = {
-        enable = true;
-        autosuggestion.enable = true;
-        oh-my-zsh = {
-            enable = true;
-            theme = "gentoo";
-        };
-        shellAliases =
-          let
-            flakeDir = "~/nix-config/";
-          in {
-            az = "sudo /nix/store/a800fq9aggnwzv2nq9cfz13sm931ad45-amnezia-vpn-4.8.3.1//bin/AmneziaVPN-service";
-            rb = "sudo nixos-rebuild switch --flake ${flakeDir}";
-            upd = "nix flake update ${flakeDir}";
-            upg = "sudo nixos-rebuild switch --upgrade --flake ${flakeDir}";
-
-            hms = "home-manager switch --flake ${flakeDir}";
-
-            conf = "code ${flakeDir}";
-          };
+      enable = true;
+      autosuggestion.enable = true;
+      syntaxHighlighting.enable = true;
+      enableCompletion = true;
+      history = {
+        size = 1000;
       };
-
-      git = {
+      oh-my-zsh = {
         enable = true;
-        userName = "kamusari1337";
-        userEmail = "ovsyannikovkostyan@gmail.com";
+        theme = "gentoo";
+        plugins = [ "git" ];
       };
+      shellAliases = {
+        az = "sudo /nix/store/a800fq9aggnwzv2nq9cfz13sm931ad45-amnezia-vpn-4.8.3.1/bin/AmneziaVPN-service";
+        az-permit = "sudo ${flakeDir}/home-manager/scripts/amnezia.sh";
+
+        rb = "sudo nixos-rebuild switch --flake ${flakeDir}";
+        upd = "nix flake update ${flakeDir}";
+        upg = "sudo nixos-rebuild switch --upgrade --flake ${flakeDir}";
+
+        hms = "home-manager switch --flake ${flakeDir}";
+
+        dfiles = "rsync -av --progress --include=\".*\" ~/nix-config/dotfiles/ ~/";
+
+        conf = "code ${flakeDir}";
+
+        cls = "clear";
+        ls = "ls -lh";
+      };
+    };
   };
-
 }

@@ -12,6 +12,36 @@
     users = {
       kamusari = import ../home-manager/home.nix;
     };
+    backupFileExtension = "backup";
+  };
+
+  systemd = {
+    services = {
+      amnezia-vpn = {
+        description = "Amnezia VPN Service";
+        after = [ "network-online.target" ];
+        wants = [ "network-online.target" ];
+        wantedBy = [ "multi-user.target" ];
+
+        serviceConfig = {
+          ExecStart = "${unstable.amnezia-vpn}/bin/AmneziaVPN-service";
+          Restart = "always";
+          Environment = "PATH=/run/current-system/sw/bin";
+        };
+      };
+      amnezia-vpn-gui = {
+        description = "Amnezia VPN GUI";
+        after = [ "network-online.target" ];
+        wants = [ "network-online.target" ];
+        wantedBy = [ "multi-user.target" ];
+
+        serviceConfig = {
+          ExecStart = "${unstable.amnezia-vpn}/bin/AmneziaVPN-service";
+          Restart = "always";
+          Environment = "PATH=/run/current-system/sw/bin";
+        };
+      };
+    };
   };
 
   disabledModules = [ "services/networking/zapret.nix" ];
@@ -109,23 +139,6 @@
     };
   };
 
-  programs = {
-    steam = {
-      enable = true;
-      extraPackages = with pkgs; [ libpulseaudio ];
-      remotePlay.openFirewall = true;
-      dedicatedServer.openFirewall = true;
-      localNetworkGameTransfers.openFirewall = true;
-    };
-
-    hyprland = {
-      enable = true;
-      xwayland.enable = true;
-    };
-
-    zsh.enable = true;
-  };
-
   xdg.portal = {
     enable = true;
     xdgOpenUsePortal = true;
@@ -178,10 +191,10 @@
     wget
     git
     kitty
+
     pavucontrol
     home-manager
-
-    nautilus
+    xdg-utils
     waybar
     rofi-wayland
     bibata-cursors
@@ -201,8 +214,10 @@
     jdk21
     maven
     mongosh
-    mongodb-compass
 
+    tmux
+    yazi
+    toile
     cbonsai
     cmatrix
     fd
