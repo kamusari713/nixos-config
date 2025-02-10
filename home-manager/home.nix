@@ -1,6 +1,6 @@
 { pkgs, config, lib, ... }:
 let
-  flakeDir = "~/nix-config";
+  flakeDir = "~/nixos-config";
 in
 {
 
@@ -65,7 +65,7 @@ in
 
         hms = "home-manager switch --flake ${flakeDir}";
 
-        dfiles = "rsync -av --progress --include=\".*\" ~/nix-config/dotfiles/ ~/";
+        dfiles = "rsync -av --progress --include=\".*\" ~/nixos-config/dotfiles/ ~/";
 
         conf = "code ${flakeDir}";
 
