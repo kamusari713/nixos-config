@@ -34,6 +34,9 @@
 
   systemd = {
     services = {
+      "getty@tty1".enable = false;
+      "autovt@tty1".enable = false;
+
       amnezia-vpn = {
         description = "Amnezia VPN Service";
         after = [ "network-online.target" ];
