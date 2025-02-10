@@ -235,7 +235,7 @@
 
     tmux
     yazi
-    toile
+    toilet
     cbonsai
     cmatrix
     fd
