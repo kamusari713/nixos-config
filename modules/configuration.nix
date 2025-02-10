@@ -15,6 +15,22 @@
     backupFileExtension = "backup";
   };
 
+  programs = {
+    steam = {
+      enable = true;
+      extraPackages = with pkgs; [ libpulseaudio ];
+      gamescopeSession.enable = true;
+      remotePlay.openFirewall = true;
+      dedicatedServer.openFirewall = true;
+      localNetworkGameTransfers.openFirewall = true;
+    };
+
+    hyprland = {
+      enable = true;
+      xwayland.enable = true;
+    };
+  };
+
   systemd = {
     services = {
       amnezia-vpn = {
