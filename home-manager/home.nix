@@ -65,7 +65,7 @@ in
 
         hms = "home-manager switch --flake ${flakeDir}";
 
-        dfiles = "rsync -av --progress --include=\".*\" ~/nixos-config/dotfiles/ ~/";
+        dfiles = "sudo rsync -av --progress --include=\".*\" ~/nixos-config/dotfiles/ ~/";
 
         conf = "code ${flakeDir}";
 
