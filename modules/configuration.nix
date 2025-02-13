@@ -17,6 +17,8 @@
   programs = {
     zsh.enable = true;
 
+    dconf.enable = true;
+
     steam = {
       enable = true;
       extraPackages = with pkgs; [ libpulseaudio ];
@@ -218,6 +220,7 @@
     waybar
     rofi-wayland
     bibata-cursors
+    gruvbox-gtk-theme
 
     hyprshot
     swaybg
