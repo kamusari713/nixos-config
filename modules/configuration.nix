@@ -237,6 +237,7 @@
     jdk21
     maven
     mongosh
+    postman
 
     tmux
     yazi
