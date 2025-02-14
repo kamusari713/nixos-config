@@ -58,7 +58,7 @@
         wantedBy = [ "multi-user.target" ];
 
         serviceConfig = {
-          ExecStart = "${unstable.amnezia-vpn}/bin/AmneziaVPN-service";
+          ExecStart = "${unstable.amnezia-vpn}/bin/AmneziaVPN";
           Restart = "always";
           Environment = "PATH=/run/current-system/sw/bin";
         };
