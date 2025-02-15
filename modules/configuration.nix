@@ -236,6 +236,7 @@
     nodejs_23
     jdk21
     maven
+    jetbrains.idea-community
     mongosh
     postman
 
