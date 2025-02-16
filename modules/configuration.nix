@@ -213,6 +213,8 @@
     wget
     git
     kitty
+    vim
+    neovim
 
     pavucontrol
     home-manager
