@@ -23,6 +23,13 @@ in
   };
 
   programs = {
+    neovim = {
+      enable = true;
+       plugins = [
+        pkgs.vimPlugins.vim-be-good
+       ];
+    };
+
     bash = {
       enable = true;
     };
