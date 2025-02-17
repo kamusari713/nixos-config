@@ -242,6 +242,12 @@
     mongosh
     postman
 
+    libgcc
+    gnumake
+    ripgrep
+    unzip
+    fd
+
     tmux
     yazi
     toilet
