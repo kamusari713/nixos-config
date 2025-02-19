@@ -42,18 +42,6 @@
           Environment = "PATH=/run/current-system/sw/bin";
         };
       };
-      amnezia-vpn-gui = {
-        description = "Amnezia VPN GUI";
-        after = [ "network-online.target" ];
-        wants = [ "network-online.target" ];
-        wantedBy = [ "multi-user.target" ];
-
-        serviceConfig = {
-          ExecStart = "${unstable.amnezia-vpn}/bin/AmneziaVPN";
-          Restart = "always";
-          Environment = "PATH=/run/current-system/sw/bin";
-        };
-      };
     };
   };
 
