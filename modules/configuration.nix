@@ -19,15 +19,6 @@
 
     dconf.enable = true;
 
-    steam = {
-      enable = true;
-      extraPackages = with pkgs; [ libpulseaudio ];
-      gamescopeSession.enable = true;
-      remotePlay.openFirewall = true;
-      dedicatedServer.openFirewall = true;
-      localNetworkGameTransfers.openFirewall = true;
-    };
-
     hyprland = {
       enable = true;
       xwayland.enable = true;
@@ -215,6 +206,7 @@
     kitty
     vim
     neovim
+    lazygit
 
     pavucontrol
     home-manager
@@ -233,7 +225,6 @@
     google-chrome
     telegram-desktop
     vesktop
-    protonup
 
     nodejs_23
     jdk21
@@ -241,12 +232,6 @@
     jetbrains.idea-community
     mongosh
     postman
-
-    libgcc
-    gnumake
-    ripgrep
-    unzip
-    fd
 
     tmux
     yazi
