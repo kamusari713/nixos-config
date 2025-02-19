@@ -232,6 +232,7 @@
     jetbrains.idea-community
     mongosh
     postman
+    obsidian
 
     tmux
     yazi
