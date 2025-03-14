@@ -1,8 +1,17 @@
-{ pkgs, config, lib, ... }:
+{ pkgs, ... }:
 let
   flakeDir = "~/nixos-config";
+
+  nixvim = import (builtins.fetchGit {
+    url = "https://github.com/nix-community/nixvim";
+    ref = "main";
+  });
 in
 {
+  imports = [
+    nixvim.homeManagerModules.nixvim
+    ./nixvim
+  ];
 
   home = {
     username = "kamusari";
@@ -23,29 +32,11 @@ in
   };
 
   programs = {
-    neovim = {
+    home-manager = {
       enable = true;
-       plugins = [
-        pkgs.vimPlugins.vim-be-good
-       ];
     };
 
     bash = {
-      enable = true;
-    };
-
-    java = {
-      enable = true;
-      package = pkgs.jdk21;
-    };
-
-    git = {
-      enable = true;
-      userName = "kamusari713";
-      userEmail = "kamusari713@yandex.com";
-    };
-
-    home-manager = {
       enable = true;
     };
 
@@ -57,28 +48,35 @@ in
       history = {
         size = 1000;
       };
+
       oh-my-zsh = {
         enable = true;
         theme = "gentoo";
         plugins = [ "git" ];
       };
+
       shellAliases = {
-        az = "sudo /nix/store/a800fq9aggnwzv2nq9cfz13sm931ad45-amnezia-vpn-4.8.3.1/bin/AmneziaVPN-service";
-        az-permit = "sudo ${flakeDir}/home-manager/scripts/amnezia.sh";
+        rb = "sudo nixos-rebuild switch --flake ${flakeDir} --impure";
+        upd = "nix flake update ${flakeDir} --impure";
+        upg = "sudo nixos-rebuild switch --upgrade --flake ${flakeDir} --impure";
+        hms = "home-manager switch --flake ${flakeDir} --impure";
 
-        rb = "sudo nixos-rebuild switch --flake ${flakeDir}";
-        upd = "nix flake update ${flakeDir}";
-        upg = "sudo nixos-rebuild switch --upgrade --flake ${flakeDir}";
-
-        hms = "home-manager switch --flake ${flakeDir}";
-
-        dfiles = "sudo rsync -av --progress --include=\".*\" ~/nixos-config/dotfiles/ ~/";
-
-        conf = "code ${flakeDir}";
+        df = "sudo rsync -av --progress --include=\".*\" ~/nixos-config/dotfiles/ ~/";
 
         cls = "clear";
         ls = "ls -lh";
       };
+    };
+
+    java = {
+      enable = true;
+      package = pkgs.jdk21;
+    };
+
+    git = {
+      enable = true;
+      userName = "kamusari713";
+      userEmail = "ovsyannikovkostyan@gmail.com";
     };
   };
 }

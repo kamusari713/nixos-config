@@ -1,0 +1,5 @@
+theme = GruvboxDark
+font-family = JetBrainsMono Nerd
+font-size = 14
+background-opacity = 0.8
+confirm-close-surface = false
